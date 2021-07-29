@@ -6,7 +6,7 @@ import shutil
 class Parser:
     extensions: List[str] = []
 
-    def validate_extension(self, extension):
+    def valid_extension(self, extension):
         return extension in self.extensions
 
     def parse(self, path: Path, source: Path, dest: Path):
@@ -16,7 +16,7 @@ class Parser:
         with open(path, "r") as file:
             return file.read()
 
-    def write(self, path, dest, content, ext="html"):
+    def write(self, path, dest, content, ext=".html"):
         full_path = dest / path.with_suffix(ext).name
         with open(full_path, "w") as file:
             file.write(content)
