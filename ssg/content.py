@@ -15,12 +15,12 @@ class Content(Mapping):
         return cls(metadata, content)
 
     def __init__(self, metadata, content):
-        data = metadata
-        self.data = {"content": content}
+        self.data = metadata
+        self.data["content"] = content
 
     @property
     def body(self):
-        return self.data["contents"]
+        return self.data["content"]
 
     @property
     def type(self):
@@ -37,11 +37,11 @@ class Content(Mapping):
         return self.data.__iter__()
 
     def __len__(self):
-        return self.data.__len__()
+        return len(self.data)
 
     def __repr__(self):
         data = {}
         for key, value in self.data.items():
-            if key is not "content":
-                value = data[key]
+            if key != "content":
+                data[key] = value
         return str(data)
